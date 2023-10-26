@@ -1,37 +1,42 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import EmployeeService from '../services/EmployeeService';
 import Employee from './Employee';
+import { PDFViewer,PDFDownloadLink } from '@react-pdf/renderer';
+import { ReactDOM } from 'react';
+import PDF from './PDF';
+
 
 const EmployeeList = () => {
 
-    const nav=useNavigate();
+
+    const nav = useNavigate();
 
     const [employees, setEmployees] = useState(null)
 
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const fetchData= async () => {
+        const fetchData = async () => {
             setLoading(true);
-            try{
-                const response=await EmployeeService.getEmployeesWithID()
+            try {
+                const response = await EmployeeService.getEmployeesWithID()
                 console.log(response)
                 setEmployees(response.data)
-            } catch(error) {
+            } catch (error) {
                 console.log(error);
             }
             setLoading(false);
         };
         fetchData()
     }, [])
-    
-    const deleteEmployee =(e,id) => {
+
+    const deleteEmployee = (e, id) => {
         e.preventDefault()
-        EmployeeService.deleteEmployee(id).then((response)=> {
-            if(employees) {
-                setEmployees((prevElement)=>{
-                    return prevElement.filter((employee) => employee.id!==id)
+        EmployeeService.deleteEmployee(id).then((response) => {
+            if (employees) {
+                setEmployees((prevElement) => {
+                    return prevElement.filter((employee) => employee.id !== id)
                 })
             }
         })
@@ -41,7 +46,7 @@ const EmployeeList = () => {
         <>
             <div className='container mx-auto my-8'>
                 <div className='h-12'>
-                    <button className='rounded bg-slate-600 text-white px-6 py-2 font-semibold' onClick={()=>nav("/addEmployee")}>Add Employee</button>
+                    <button className='rounded bg-slate-600 text-white px-6 py-2 font-semibold' onClick={() => nav("/addEmployee")}>Add Employee</button>
                 </div>
                 <div className='flex shadow border-b'>
                     <table className='min-w-full'>
@@ -54,15 +59,26 @@ const EmployeeList = () => {
                             </tr>
                         </thead>
                         {!loading && (
-                        <tbody className='bg-white'>
-                            {employees.map((employee,index) => (
-                                <Employee employee={employee} deleteEmployee={deleteEmployee}  key={index}></Employee>
-                                // ,console.log(index)
-                            ))}
-                        </tbody>)}
+                            <tbody className='bg-white'>
+                                {employees.map((employee, index) => (
+                                    <Employee employee={employee} deleteEmployee={deleteEmployee} key={index}></Employee>
+                                    // ,console.log(index)
+                                ))}
+                            </tbody>)}
                     </table>
 
                 </div>
+            </div>
+            <div className='items-center flex justify-center my-5'>
+            <PDFDownloadLink document={<PDF />} filename="FORM">
+                    {({ loading }) => (loading ? <button className='bg-red-400 hover:bg-red-800 text-xl text-xl p-3 rounded-2xl'>Loading Document...</button> : <button className='bg-green-400 hover:bg-green-800 cursor-pointer text-xl p-3 rounded-2xl'>Download</button>)}
+                </PDFDownloadLink>
+            </div>
+            <div className='items-center flex justify-center'>
+                
+                <PDFViewer height={600} showToolbar={false} width="75%">
+                    <PDF />
+                </PDFViewer>
             </div>
         </>
     )
