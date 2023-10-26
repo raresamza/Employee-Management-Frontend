@@ -2,6 +2,7 @@ import { BrowserRouter, Routes,Route } from "react-router-dom"
 import AddEmployee from "./components/AddEmployee"
 import Navbar from "./components/Navbar"
 import EmployeeList from "./components/EmployeeList"
+import UpdateEmployee from "./components/UpdateEmployee"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<EmployeeList/>}></Route>
       <Route path="/employeeList" element={<EmployeeList/>}></Route>
       <Route path="/addEmployee" element={<AddEmployee/>}></Route>
+      <Route path="/updateEmployee/:id" element={<UpdateEmployee/>}></Route>
     </Routes>
     </BrowserRouter>
     </>

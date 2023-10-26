@@ -15,7 +15,7 @@ const EmployeeList = () => {
         const fetchData= async () => {
             setLoading(true);
             try{
-                const response=await EmployeeService.getEmployees()
+                const response=await EmployeeService.getEmployeesWithID()
                 console.log(response)
                 setEmployees(response.data)
             } catch(error) {
@@ -28,6 +28,13 @@ const EmployeeList = () => {
     
     const deleteEmployee =(e,id) => {
         e.preventDefault()
+        EmployeeService.deleteEmployee(id).then((response)=> {
+            if(employees) {
+                setEmployees((prevElement)=>{
+                    return prevElement.filter((employee) => employee.id!==id)
+                })
+            }
+        })
     }
 
     return (
