@@ -3,6 +3,7 @@ import AddEmployee from "./components/AddEmployee"
 import Navbar from "./components/Navbar"
 import EmployeeList from "./components/EmployeeList"
 import UpdateEmployee from "./components/UpdateEmployee"
+import AddTime from "./components/AddTime"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path="/employeeList" element={<EmployeeList/>}></Route>
       <Route path="/addEmployee" element={<AddEmployee/>}></Route>
       <Route path="/updateEmployee/:id" element={<UpdateEmployee/>}></Route>
+      <Route path="/addTime/:id" element={<AddTime/>}></Route>
     </Routes>
     </BrowserRouter>
     </>

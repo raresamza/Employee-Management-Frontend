@@ -15,6 +15,7 @@ const EmployeeList = () => {
     const [employees, setEmployees] = useState(null)
 
     const [loading, setLoading] = useState(true)
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,8 +46,9 @@ const EmployeeList = () => {
     return (
         <>
             <div className='container mx-auto my-8'>
-                <div className='h-12'>
+                <div className='h-12 flex justify-between items-center mb-10'>
                     <button className='rounded bg-slate-600 text-white px-6 py-2 font-semibold' onClick={() => nav("/addEmployee")}>Add Employee</button>
+                    {/* <button className='rounded bg-slate-600 text-white px-6 py-2 font-semibold' onClick={() => nav("/addTime")}>Add Time Worked</button> */}
                 </div>
                 <div className='flex shadow border-b'>
                     <table className='min-w-full'>
@@ -71,10 +73,10 @@ const EmployeeList = () => {
             </div>
             <div className='items-center flex justify-center my-5'>
             <PDFDownloadLink document={<PDF />} filename="FORM">
-                    {({ loading }) => (loading ? <button className='bg-red-400 hover:bg-red-800 text-xl text-xl p-3 rounded-2xl'>Loading Document...</button> : <button className='bg-green-400 hover:bg-green-800 cursor-pointer text-xl p-3 rounded-2xl'>Download</button>)}
+                    {({ loading }) => (loading ? <button className='bg-red-400 hover:bg-red-800 text-xl p-3 rounded-2xl'>Loading Document...</button> : <button className='bg-green-400 hover:bg-green-800 cursor-pointer text-xl p-3 rounded-2xl'>Download</button>)}
                 </PDFDownloadLink>
             </div>
-            <div className='items-center flex justify-center'>
+            <div className='items-center flex justify-center mb-10'>
                 
                 <PDFViewer height={600} showToolbar={false} width="75%">
                     <PDF />

@@ -33,6 +33,7 @@ const UpdateEmployee = () => {
         lastName:"",
         email:"",
     })
+    
     const updateEmployee = (e) => {
         e.preventDefault()
         EmployeeService.updateEmployee(id, employee)

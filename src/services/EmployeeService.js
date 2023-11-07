@@ -17,6 +17,7 @@ class EmployeeService {
     }
 
     getEmployeeByID(id) {
+        console.log(EMPLOYEE_BASE_URL+"/"+id)
         return axios.get(EMPLOYEE_BASE_URL+"/"+id)
     }
 
