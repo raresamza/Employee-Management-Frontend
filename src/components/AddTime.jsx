@@ -47,8 +47,6 @@ const AddTime = () => {
     const edit = (e) => {
         e.preventDefault()
         employee.workedHours=count+employee.workedHours
-        // console.log(employee.workedHours)
-        // console.log(employee)
         setCount(0)
         EmployeeService.updateEmployee(state, employee)
       .then((response) => {

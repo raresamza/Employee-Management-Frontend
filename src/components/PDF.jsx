@@ -75,7 +75,7 @@ const PDF = () => {
                         </Text>
                         <Text style={styles.page}>
                         Employee: {employee.firstName} {employee.lastName+"\n"}
-                        Extra information about this employee:sexan smr
+                        Extra information about this employee:extra info
                         </Text>
                     </Page>)
             })}
