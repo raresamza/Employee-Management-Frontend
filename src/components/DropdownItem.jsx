@@ -5,11 +5,11 @@ const DropdownItem = ( props ) => {
   return (
         <>
         {/*className="menu-item" */}
-        <a href="#"  className='flex py-1 items-center hover:text-white hover:bg-blue-700' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+        <button className='flex py-1 items-center hover:text-white hover:bg-blue-700' onClick={() => console.log("hello")}>
           <span >{props.children.LeftIcon} </span>
           {props.children}
           
-        </a>
+        </button>
       </>
   )
 }

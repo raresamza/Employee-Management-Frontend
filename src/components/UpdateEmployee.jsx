@@ -40,15 +40,28 @@ const UpdateEmployee = () => {
         console.log(employee.firstName)
         console.log(employee.lastName)
         console.log(employee.email)
+        console.log(employee.role)
+        console.log(employee.description)
         setEmployee({ ...employee, [e.target.name]: value })
     }
+
+ 
 
     const [employee, setEmployee] = useState({
         id: id,
         firstName: "",
         lastName: "",
         email: "",
+        role:"",
+        description:"",
     })
+
+
+    const handleRole = (e) => {
+      console.log(employee.role)
+      employee.role=e.target.name
+      setEmployee({ ...employee, [employee.role]: e.target.name })
+    }
 
     const updateEmployee = (e) => {
         e.preventDefault()
@@ -86,6 +99,9 @@ const UpdateEmployee = () => {
                 <div className='items-center justify-center h-14 w-full my-4 space-x-4 pt-4'>
                     <button className='rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6' onClick={updateEmployee}>Update</button>
                     <button className='rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6' >Cancel</button>
+                </div>
+                <div>
+                <textarea placeholder='Add extra employee information...' name='description' value={employee.description} spellCheck={true} className='w-full rounded-lg text-sm outline-none h-28 resize-none border-2 border-black px-4 py-4 mb-1' onChange={(e)=>handleChange(e)}></textarea>
                 </div>
                 {/* <div className='mb-4'>
                     <p className='text-xl'>Select Role</p>
@@ -156,11 +172,11 @@ const UpdateEmployee = () => {
         }}
         style={{ pointerEvents: isOpen ? "auto" : "none" }}
       >
-        <motion.li className='hover:font-bold cursor-pointer' variants={itemVariants}>INTERN </motion.li>
-        <motion.li className='hover:font-bold cursor-pointer' variants={itemVariants}>JUNIOR </motion.li>
-        <motion.li className='hover:font-bold cursor-pointer' variants={itemVariants}>MID_DEV </motion.li>
-        <motion.li className='hover:font-bold cursor-pointer' variants={itemVariants}>SENIOR_DEV</motion.li>
-        <motion.li className='hover:font-bold cursor-pointer' variants={itemVariants}>PROJECT_MANAGER</motion.li>
+        <motion.button value="INTERN" name='INTERN'  className='hover:font-bold cursor-pointer text-left w-full' variants={itemVariants} onClick={(e)=>handleRole(e)}>INTERN </motion.button>
+        <motion.button value="JUNIOR" name='JUNIOR' className='hover:font-bold cursor-pointer text-left w-full' variants={itemVariants} onClick={(e)=>handleRole(e)}>JUNIOR </motion.button>
+        <motion.button value="MID_DEV" name="MID_DEV" className='hover:font-bold cursor-pointer text-left w-full' variants={itemVariants} onClick={(e)=>handleRole(e)}>MID_DEV </motion.button>
+        <motion.button value="SENIOR_DEV" name="SENIOR_DEV" className='hover:font-bold cursor-pointer text-left w-full' variants={itemVariants} onClick={(e)=>handleRole(e)}>SENIOR_DEV</motion.button>
+        <motion.button value="PROJECT_MANAGER" name="PROJECT_MANAGER" className='hover:font-bold cursor-pointer text-left w-full' variants={itemVariants} onClick={(e)=>handleRole(e)}>PROJECT_MANAGER</motion.button>
       </motion.ul>
     </motion.nav>
             </div>
